@@ -1,43 +1,62 @@
-class Phonebook:
+class Phone_book:
     """Телефонная книга."""
-    def __init__(self, name, phone_number):
-        """Создай атрибуты класса: имя и номер."""
-        self.name = name
-        self.phone_number = phone_number
-        self.Phonebook = {}
+
+    def __init__(self,phone_book):
+        self.phone_book = phone_book
+
     def add_contact(self, name, phone_number):
         """Добавь имя и номер телефона."""
-        self.Phonebook[name] = phone_number
+
+        self.phone_book[name] = phone_number
         print(f"Контакт {name} добавлен в телефонную книгу")
+
     def find_contact(self, name):
         """Найди нужный контакт из списка."""
-        if name in self.Phonebook:
-            print(f"Номер телефона {name}: {self.Phonebook[name]}")
+
+        if name in self.phone_book:
+            print(f"Номер телефона {name}: {self.phone_book[name]}")
         else:
             print(f"Контакт {name} не найден в телефонной книге")
-    def remote_contact(self, name):
+
+    def remove_contact(self, name):
         """Удали не нужный контакт."""
-        if name in self.Phonebook:
-            del self.Phonebook[name]
+
+        if name in self.phone_book:
+            del self.phone_book[name]
             print(f"Контакт {name} удален из телефонной книги")
         else:
             print(f"Контакт {name} не найден в телефонной книге")
+
     def update_contact(self, name, new_phone_number):
         """Обнови номер телефона."""
-        if name not in self.Phonebook:
-            print(f"Контакт {name} не найден в телефонной книге")
-            return
-        if name in self.Phonebook:
-            self.Phonebook[name] = new_phone_number
+
+        if name in self.phone_book:
+            self.phone_book[name] = new_phone_number
             print(f"Номер телефона контакта {name} обновлен")
         else:
             print(f"Контакт {name} не найден в телефонной книге")
+
     def display_contacts(self):
         """Выведи все контакты."""
-        print("Телефонная книга:")
-        for name, phone_number in self.Phonebook.items():
-            print(f"{name}: {phone_number}")
-pb = Phonebook("", "")
+
+        if self.phone_book != {}
+            for name, phone_number in self.phone_book.items():
+                if name in self.phone_book:
+                    print(f"{name}: {phone_number}")
+                else:
+                    print("Контакт не найден в телефонной книге")
+        else:
+            print("Телефонная книга пуста")
+            print("Хотите добавить новую запись?")
+
+    def remove_all_contacts(self):
+        """Удали все контакты."""
+
+        self.phone_book.clear()
+        print("Все контакты удалены из телефонной книги")
+
+pb = Phone_book({})
+
 while True:
     print("1. Добавить контакт")
     print("2. Найти контакт")
@@ -45,6 +64,7 @@ while True:
     print("4. Обновить контакт")
     print("5. Вывести все контакты")
     print("6. Выйти")
+    print("7. Удалить все контакты")
     choice = input("Выберите действие: ")
     if choice == "1":
         name = input("Введите имя контакта: ")
@@ -55,7 +75,7 @@ while True:
         pb.find_contact(name)
     elif choice == "3":
         name = input("Введите имя контакта: ")
-        pb.remote_contact(name)
+        pb.remove_contact(name)
     elif choice == "4":
         name = input("Введите имя контакта: ")
         new_phone_number = input("Введите новый номер телефона контакта: ")
@@ -65,5 +85,7 @@ while True:
     elif choice == "6":
         print("Выход из программы")
         break
+    elif choice == "7":
+        pb.remove_all_contacts()
     else:
         print("Некорректный выбор. Попробуйте еще раз.")
